@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gabriela_app/widgets/landing.dart';
-import 'package:gabriela_app/widgets/register.dart';
+import 'package:gabriela_app/widgets/home.dart';
 import 'package:gabriela_app/widgets/login.dart'; // Import login page
 
 void main() {
@@ -29,6 +28,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: const Landing());
+    return Scaffold(body: const Home());
   }
 }

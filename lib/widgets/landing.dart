@@ -7,26 +7,29 @@ class Landing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mendapatkan lebar dan tinggi layar
+    // Get the screen width and height
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
+    // Scaling factor for responsive text size
+    double scalingFactor = width / 375; // Example for 375px base width
 
     return Scaffold(
       body: Stack(
         children: [
           // Background image
-          Container(
-            width: width, // Lebar penuh
-            height: height, // Tinggi penuh
+          SizedBox(
+            width: width, // Full width
+            height: height, // Full height
             child: Image.asset(
-              'assets/images/home.png', // Gambar dari assets
-              fit: BoxFit.cover, // Menyesuaikan ukuran gambar dengan layar
+              'assets/images/home.png', // Image from assets
+              fit: BoxFit.cover, // Fit the image to the screen
             ),
           ),
 
-          // Konten di atas gambar
+          // Content on top of the image
           Positioned(
-            top: height * 0.4, // Menentukan posisi teks di tengah
+            top: height * 0.4, // Position elements towards the center
             left: 0,
             right: 0,
             child: Center(
@@ -34,13 +37,12 @@ class Landing extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 360),
+                  // Space above buttons
+                  SizedBox(height: height * 0.40),
 
-                  // Tombol Create Account
+                  // Create Account Button
                   ElevatedButton(
                     onPressed: () {
-                      // Arahkan ke halaman Register
-
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -49,17 +51,16 @@ class Landing extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(370, 45),
+                      minimumSize: Size(width * 0.8, 45), // Responsive width
                       backgroundColor: Colors.white,
-
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Create Account',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18 * scalingFactor, // Scalable font size
                         fontWeight: FontWeight.w900,
                         color: Colors.black,
                       ),
@@ -67,7 +68,7 @@ class Landing extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
-                  // Tombol Log In
+                  // Log In Button
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -76,17 +77,17 @@ class Landing extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(370, 45),
+                      minimumSize: Size(width * 0.8, 45), // Responsive width
                       backgroundColor: Colors.transparent,
                       side: const BorderSide(color: Colors.white),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Log In',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18 * scalingFactor, // Scalable font size
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
