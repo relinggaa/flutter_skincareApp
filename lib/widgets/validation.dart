@@ -109,9 +109,12 @@ class _ValidationState extends State<Validation> {
                     // Show the "How Validation Works" only if no product is found
                     if (_isFirstTimeSearch || _product.isEmpty)
                       _buildHowValidationWorks(width),
+
                     // Show the validation description when product is found
                     if (!_isProductNotFound && _product.isNotEmpty)
                       _buildValidationResult(width),
+                    SizedBox(height: 30),
+                    _buildSkincareTip(width),
                     // Show message when product not found
                     if (_isProductNotFound) _buildNoResultMessage(),
                   ],
@@ -261,40 +264,119 @@ class _ValidationState extends State<Validation> {
         children: [
           Text(
             "Validation Result",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Text(
-            _product,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Text(
-            "Claim: $_claimStatus",
-            style: TextStyle(fontSize: 14, color: Colors.black),
-          ),
-          SizedBox(height: 10),
-          Text(
-            "Status: ${_isVerified ? 'Verified' : 'False'}",
             style: TextStyle(
-              fontSize: 14,
-              color: _isVerified ? Colors.green : Colors.red,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
           SizedBox(height: 10),
           Text(
-            "Explanation: $_explanation",
-            style: TextStyle(fontSize: 14, color: Colors.black54),
-          ),
-          SizedBox(height: 20),
-          Text(
-            "Skincare Tip",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            _product,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
           ),
           SizedBox(height: 10),
+          // Claim section
+          Text(
+            "Claim:",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 6),
+          Text(
+            "\"$_claimStatus\"",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
+              color: Colors.black87,
+            ),
+          ),
+          SizedBox(height: 10),
+          // Status section with the colored background and checkmark
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+            decoration: BoxDecoration(
+              color:
+                  _isVerified
+                      ? Colors.green.withOpacity(0.2)
+                      : Colors.red.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.check_circle,
+                  color: _isVerified ? Colors.green : Colors.red,
+                  size: 18,
+                ),
+                SizedBox(width: 8),
+                Text(
+                  _isVerified ? "Verfied" : "False",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: _isVerified ? Colors.green : Colors.red,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+          // Explanation section
+          Text(
+            "Explanation:",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 6),
+          Text(
+            _explanation,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.black87,
+              height: 1.5, // Adjust line height for readability
+            ),
+          ),
+          SizedBox(height: 10),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSkincareTip(double width) {
+    return Container(
+      width: width * 0.9,
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1A64AF),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Skincare Tip",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(height: 6),
           Text(
             _skincareTip,
-            style: TextStyle(fontSize: 14, color: Colors.black54),
+            style: TextStyle(fontSize: 14, color: Colors.white),
           ),
         ],
       ),
