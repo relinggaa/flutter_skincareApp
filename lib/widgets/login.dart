@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:gabriela_app/widgets/Home.dart';
 import 'package:gabriela_app/widgets/register.dart'; // Import halaman login
 
 class Login extends StatefulWidget {
@@ -200,7 +201,7 @@ class _LoginState extends State<Login> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const Register()),
+            MaterialPageRoute(builder: (context) => const Home()),
           );
         },
         child: Text(

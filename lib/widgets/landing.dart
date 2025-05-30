@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gabriela_app/widgets/Home.dart';
 import 'package:gabriela_app/widgets/register.dart';
 import 'package:gabriela_app/widgets/login.dart';
 
@@ -10,7 +11,7 @@ class Landing extends StatelessWidget {
     // Get the screen width and height
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
+    Color bc = Color(0xFFE8EFF9);
     // Scaling factor for responsive text size
     double scalingFactor = width / 375; // Example for 375px base width
 
@@ -73,7 +74,7 @@ class Landing extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Login()),
+                        MaterialPageRoute(builder: (context) => const Home()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

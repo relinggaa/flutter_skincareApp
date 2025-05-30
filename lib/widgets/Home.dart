@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart'; // Gunakan ini
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:gabriela_app/widgets/validation.dart'; // Gunakan ini
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -53,11 +54,24 @@ class Home extends StatelessWidget {
                           'Validate Product',
                           'assets/images/icon1.png', // Path ke gambar lokal Anda
                           'Scan or search to verify claims',
+                          () {
+                            // Fungsi yang akan dijalankan saat card 'Validate Product' ditekan
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Validation(),
+                              ),
+                            );
+                          },
                         ),
                         _buildOptionCard(
                           'Report a Claim',
                           'assets/images/icon2.png',
                           'Submit exaggerated or false claims',
+                          () {
+                            // Fungsi yang akan dijalankan saat card 'Validate Product' ditekan
+                            print('Validate Product clicked');
+                          },
                         ),
                       ],
                     ),
@@ -69,11 +83,19 @@ class Home extends StatelessWidget {
                           'Explore Ingredients',
                           'assets/images/icon3.png',
                           'Learn about skincare ingredients',
+                          () {
+                            // Fungsi yang akan dijalankan saat card 'Validate Product' ditekan
+                            print('Validate Product clicked');
+                          },
                         ),
                         _buildOptionCard(
                           'My Recommendations',
                           'assets/images/icon4.png',
                           'Get personalized product suggestions',
+                          () {
+                            // Fungsi yang akan dijalankan saat card 'Validate Product' ditekan
+                            print('Validate Product clicked');
+                          },
                         ),
                       ],
                     ),
@@ -356,39 +378,49 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget _buildOptionCard(String title, String imagePath, String description) {
+  Widget _buildOptionCard(
+    String title,
+    String imagePath,
+    String description,
+    VoidCallback onPressed,
+  ) {
     Color blue = Color(0xFF1A64AF);
     return Expanded(
-      child: Card(
-        elevation: 10,
-        shadowColor: blue, // Mengatur warna shadow menjadi biru
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        color: Colors.white, // Set the card color to white
-        child: Container(
-          height: 220,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-          child: Padding(
-            padding: const EdgeInsets.all(13.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  imagePath, // Menampilkan gambar dari file lokal
-                  width: 100, // Atur ukuran gambar sesuai keinginan
-                  height: 100,
-                ),
-                SizedBox(height: 8),
-                Text(
-                  title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black, fontSize: 14),
-                ),
-              ],
+      child: GestureDetector(
+        onTap: onPressed, // Menambahkan fungsi onPressed saat card diklik
+        child: Card(
+          elevation: 10,
+          shadowColor: blue, // Mengatur warna shadow menjadi biru
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          color: Colors.white, // Set the card color to white
+          child: Container(
+            height: 220,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+            child: Padding(
+              padding: const EdgeInsets.all(13.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    imagePath, // Menampilkan gambar dari file lokal
+                    width: 100, // Atur ukuran gambar sesuai keinginan
+                    height: 100,
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    title,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    description,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.black, fontSize: 14),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
