@@ -114,7 +114,7 @@ class _ValidationState extends State<Validation> {
                     if (!_isProductNotFound && _product.isNotEmpty)
                       _buildValidationResult(width),
                     SizedBox(height: 30),
-                    _buildSkincareTip(width),
+                    if (_product.isNotEmpty) _buildSkincareTip(width),
                     // Show message when product not found
                     if (_isProductNotFound) _buildNoResultMessage(),
                   ],

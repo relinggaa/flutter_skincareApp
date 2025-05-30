@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:gabriela_app/widgets/Report.dart';
 import 'package:gabriela_app/widgets/validation.dart'; // Gunakan ini
 
 class Home extends StatelessWidget {
@@ -69,8 +70,13 @@ class Home extends StatelessWidget {
                           'assets/images/icon2.png',
                           'Submit exaggerated or false claims',
                           () {
-                            // Fungsi yang akan dijalankan saat card 'Validate Product' ditekan
-                            print('Validate Product clicked');
+                            // Function that will be executed when the card 'Validate Product' is tapped
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Report(),
+                              ),
+                            );
                           },
                         ),
                       ],
